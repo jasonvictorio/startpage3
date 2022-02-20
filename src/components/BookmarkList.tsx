@@ -33,7 +33,7 @@ export default ({ title, bookmarks, isEdit, onBookmarkListChange }: Props) => {
   }
 
   const handleBookmarkMove = (i: number, bookmark: BookmarkType, direction: 1 | -1) => () => {
-    if (i - direction <= 0) return;
+    if (i - direction < 0) return;
 
     bookmarks.splice(i, 1)
     bookmarks.splice(i - direction, 0, bookmark)
@@ -41,6 +41,11 @@ export default ({ title, bookmarks, isEdit, onBookmarkListChange }: Props) => {
       title,
       bookmarks: bookmarks
     })
+  }
+
+  const handleBookmarkDelete = (i: number) => () => {
+    bookmarks.splice(i, 1)
+    onBookmarkListChange({ title, bookmarks })
   }
 
   return (
@@ -60,6 +65,7 @@ export default ({ title, bookmarks, isEdit, onBookmarkListChange }: Props) => {
               onBookmarkChange={handleBookmarkChange(i)}
               onBookmarkMoveUp={handleBookmarkMove(i, bookmark, 1)}
               onBookmarkMoveDown={handleBookmarkMove(i, bookmark, -1)}
+              onBookmarkDelete={handleBookmarkDelete(i)}
             ></Bookmark>
           </li>
         ))}
