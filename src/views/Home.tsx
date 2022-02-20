@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import _ from 'lodash'
 
@@ -49,6 +49,9 @@ export default (props: RouteComponentProps) => {
     setEdit(false)
   }
 
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  }
+
   return (
     <div>
       {bookmarkLists.map(({ title, bookmarks }, i) => (
@@ -63,6 +66,7 @@ export default (props: RouteComponentProps) => {
 
       {isEdit ? (
         <>
+          <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} />
           <button onClick={handleBookmarkListAdd}>add bookmark list</button>
           <button onClick={handleCancel}>cancel</button>
           <button onClick={handleSave}>save</button>
