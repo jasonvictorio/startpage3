@@ -54,26 +54,44 @@ export default (props: RouteComponentProps) => {
 
   return (
     <div>
-      {bookmarkLists.map(({ title, bookmarks }, i) => (
-        <BookmarkList
-          title={title}
-          bookmarks={bookmarks}
-          isEdit={isEdit}
-          onBookmarkListChange={handleBookmarkListChange(i)}
-          key={i}
-        ></BookmarkList>
-      ))}
+      <ul className='bookmark-lists'>
+        {bookmarkLists.map(({ title, bookmarks }, i) => (
+          <li key={i} className="bookmark-lists-item">
+            <BookmarkList
+              title={title}
+              bookmarks={bookmarks}
+              isEdit={isEdit}
+              onBookmarkListChange={handleBookmarkListChange(i)}
+            ></BookmarkList>
+          </li>
+        ))}
+        <li className='bookmark-lists-item settings-dropdown'>
+          <div className="bookmark-lists-item-title">⚙️</div>
+          <ul className="bookmark-list">
+            {isEdit ? (
+              <>
+                <li className='bookmark-list-item'>
+                  <button className='bookmark-link' onClick={handleBookmarkListAdd}>add bookmark list</button>
+                </li>
+                <li className='bookmark-list-item'>
+                  <button className='bookmark-link' onClick={handleCancel}>cancel</button>
+                </li>
+                <li className='bookmark-list-item'>
+                  <button className='bookmark-link' onClick={handleSave}>save</button>
+                </li>
+                <li className='bookmark-list-item'>
+                  <input className='bookmark-link' type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} />
+                </li>
+              </>
+            ) : (
+              <li className='bookmark-list-item'>
+                <button className='bookmark-link' onClick={handleEdit}>Edit</button>
+              </li>
+            )}
+          </ul>
+        </li>
+      </ul>
 
-      {isEdit ? (
-        <>
-          <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} />
-          <button onClick={handleBookmarkListAdd}>add bookmark list</button>
-          <button onClick={handleCancel}>cancel</button>
-          <button onClick={handleSave}>save</button>
-        </>
-      ) : (
-        <button onClick={handleEdit}>Edit</button>
-      )}
     </div>
   )
 }

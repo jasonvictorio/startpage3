@@ -23,14 +23,14 @@ export default ({ title, url, isEdit, onBookmarkChange, onBookmarkMoveUp, onBook
 
   return (
     isEdit ? (
-      <>
+      <div className='bookmark-link'>
         <input type="text" value={title} onChange={handleTitleChange} placeholder={placeholderTitle} />
         <input type="text" value={url} onChange={handleUrlChange} placeholder={placeholderUrl} />
-        <button type="button" onClick={onBookmarkMoveUp}>up</button>
-        <button type="button" onClick={onBookmarkMoveDown}>down</button>
-      </>
+        <button type="button" onClick={onBookmarkMoveUp}>🔼</button>
+        <button type="button" onClick={onBookmarkMoveDown}>🔽</button>
+      </div>
     ) : (
-      <a href={url}>{title}</a>
+      <a href={url} className="bookmark-link" title={url}>{title} <span className="bookmark-link-url">{url}</span></a>
     )
   )
 }

@@ -44,25 +44,27 @@ export default ({ title, bookmarks, isEdit, onBookmarkListChange }: Props) => {
   }
 
   return (
-    <ul>
+    <>
       {isEdit ? (
-        <input type="text" value={title} onChange={handleBookmarkListTitleChange} />
+        <input className="bookmark-lists-item-title" type="text" value={title} onChange={handleBookmarkListTitleChange} />
       ) : (
-        <li>{title}</li>
+        <div className="bookmark-lists-item-title">{title}</div>
       )}
-      {bookmarks.map((bookmark, i) => (
-        <li key={i}>
-          <Bookmark
-            title={bookmark.title}
-            url={bookmark.url}
-            isEdit={isEdit}
-            onBookmarkChange={handleBookmarkChange(i)}
-            onBookmarkMoveUp={handleBookmarkMove(i, bookmark, 1)}
-            onBookmarkMoveDown={handleBookmarkMove(i, bookmark, -1)}
-          ></Bookmark>
-        </li>
-      ))}
-      {isEdit && <li><button onClick={handleBookmarkAdd}>add bookmark</button></li>}
-    </ul>
+      <ul className='bookmark-list'>
+        {bookmarks.map((bookmark, i) => (
+          <li className="bookmark-list-item" key={i}>
+            <Bookmark
+              title={bookmark.title}
+              url={bookmark.url}
+              isEdit={isEdit}
+              onBookmarkChange={handleBookmarkChange(i)}
+              onBookmarkMoveUp={handleBookmarkMove(i, bookmark, 1)}
+              onBookmarkMoveDown={handleBookmarkMove(i, bookmark, -1)}
+            ></Bookmark>
+          </li>
+        ))}
+        {isEdit && <li className='bookmark-list-item'><button className="bookmark-link bookmark-list-add" onClick={handleBookmarkAdd}>add bookmark</button></li>}
+      </ul>
+    </>
   )
 }
