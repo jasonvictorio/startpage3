@@ -28,7 +28,7 @@ export default ({ title, bookmarks, isEdit, onBookmarkListChange }: Props) => {
   const handleBookmarkAdd = () => {
     onBookmarkListChange({
       title,
-      bookmarks: [...bookmarks, {}]
+      bookmarks: [...bookmarks, { title: '', url: '' }]
     })
   }
 
