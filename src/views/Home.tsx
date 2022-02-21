@@ -5,6 +5,7 @@ import _ from 'lodash'
 import BookmarkList from '../components/BookmarkList'
 import defaultBookmarkLists from '../bookmarkLists'
 import { BookmarkList as BookmarkListType } from '../types'
+import ImageUpload from '../components/ImageUpload'
 
 const bookmarkListsKey = 'bookmark-lists'
 
@@ -50,7 +51,7 @@ export default (props: RouteComponentProps) => {
     setEdit(false)
   }
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: string) => {
   }
 
   return (
@@ -81,10 +82,11 @@ export default (props: RouteComponentProps) => {
                   <button className='bookmark-link' onClick={handleSave}>save</button>
                 </li>
                 <li className='bookmark-list-item'>
-                  <label className="bookmark-link input-file">
-                    <input className='bookmark-link' type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} />
-                    Change wallpaper
-                  </label>
+                  <ImageUpload
+                    label="Change wallpaper"
+                    className='bookmark-link'
+                    onChange={handleImageChange}
+                  ></ImageUpload>
                 </li>
               </>
             ) : (

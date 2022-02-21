@@ -183,6 +183,8 @@ button {
 }
 
 .input-file {
+  cursor: pointer;
+
   input {
     display: none;
   }
