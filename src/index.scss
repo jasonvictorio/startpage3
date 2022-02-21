@@ -5,7 +5,6 @@
 
 .App {
   height: 100vh;
-  background-color: #e2e8f0;
 }
 
 @mixin transition {
@@ -30,15 +29,17 @@
     }
 
     &-title {
-      @include transition;
       color: #999;
       height: 40px;
-      padding: 0 15px;
       display: flex;
       align-items: center;
+      margin: 0 15px;
 
       &:not(input) {
+        @include transition;
         cursor: default;
+        padding: 0 15px;
+        margin: 0;
       }
     }
   }
@@ -98,7 +99,7 @@
   white-space: nowrap;
   display: flex;
   padding: 0 20px;
-  height: 26px;
+  min-height: 26px;
   align-items: center;
 
   &:hover {
@@ -116,15 +117,23 @@
   &:hover &-url {
     color: rgba( 255, 255, 255, 0.5)
   }
+
+  button {
+    width: auto;
+  }
+
+  input {
+    margin-left: 8px;
+  }
 }
 
 input {
   background-color: transparent;
   border: none;
-  text-decoration: underline;
 
   &:focus-visible {
     outline: none;
+    text-decoration: underline;
   }
 }
 
@@ -139,4 +148,42 @@ input {
 
 button {
   width: 100%;
+}
+
+.hidden-span {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.bookmark-list-divider {
+  height: 2px;
+  margin: 9px 1px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-bottom: 1px solid #ffffff;
+}
+
+.settings-dropdown {
+  margin-left: auto;
+
+  .bookmark-list {
+    right: 0;
+
+    &:before {
+      left: auto;
+      right: 9px;
+    }
+
+    &:after {
+      left: auto;
+      right: 10px;
+    }
+  }
+}
+
+.input-file {
+  input {
+    display: none;
+  }
 }

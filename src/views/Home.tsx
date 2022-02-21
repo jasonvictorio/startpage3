@@ -29,8 +29,9 @@ export default (props: RouteComponentProps) => {
   }
 
   const handleBookmarkListAdd = () => {
-    setBookmarkLists([...bookmarkLists, { title: '', bookmarks: [{}] }])
+    setBookmarkLists([...bookmarkLists, { title: '', bookmarks: [{ title: '', url: '' }] }])
   }
+
 
   const handleEdit = () => {
     setBookmarkListsCopy(_.cloneDeep(bookmarkLists))
@@ -80,7 +81,10 @@ export default (props: RouteComponentProps) => {
                   <button className='bookmark-link' onClick={handleSave}>save</button>
                 </li>
                 <li className='bookmark-list-item'>
-                  <input className='bookmark-link' type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} />
+                  <label className="bookmark-link input-file">
+                    <input className='bookmark-link' type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} />
+                    Change wallpaper
+                  </label>
                 </li>
               </>
             ) : (

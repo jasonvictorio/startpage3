@@ -2,6 +2,7 @@ import React, { ChangeEvent } from 'react'
 
 import { Bookmark as BookmarkType, BookmarkList } from '../types'
 import Bookmark from './Bookmark'
+import Input from './Input'
 
 type Props = BookmarkList & {
   isEdit: boolean,
@@ -51,22 +52,27 @@ export default ({ title, bookmarks, isEdit, onBookmarkListChange }: Props) => {
   return (
     <>
       {isEdit ? (
-        <input className="bookmark-lists-item-title" type="text" value={title} onChange={handleBookmarkListTitleChange} />
+        <Input value={title} onChange={handleBookmarkListTitleChange} placeholder="List title" className="bookmark-lists-item-title"></Input>
+        // <input className="bookmark-lists-item-title" type="text" value={title} onChange={handleBookmarkListTitleChange} />
       ) : (
         <div className="bookmark-lists-item-title">{title}</div>
       )}
       <ul className='bookmark-list'>
         {bookmarks.map((bookmark, i) => (
           <li className="bookmark-list-item" key={i}>
-            <Bookmark
-              title={bookmark.title}
-              url={bookmark.url}
-              isEdit={isEdit}
-              onBookmarkChange={handleBookmarkChange(i)}
-              onBookmarkMoveUp={handleBookmarkMove(i, bookmark, 1)}
-              onBookmarkMoveDown={handleBookmarkMove(i, bookmark, -1)}
-              onBookmarkDelete={handleBookmarkDelete(i)}
-            ></Bookmark>
+            {bookmark.title !== '' || isEdit ? (
+              <Bookmark
+                title={bookmark.title}
+                url={bookmark.url}
+                isEdit={isEdit}
+                onBookmarkChange={handleBookmarkChange(i)}
+                onBookmarkMoveUp={handleBookmarkMove(i, bookmark, 1)}
+                onBookmarkMoveDown={handleBookmarkMove(i, bookmark, -1)}
+                onBookmarkDelete={handleBookmarkDelete(i)}
+              ></Bookmark>
+            ) : (
+              <div className="bookmark-list-divider"></div>
+            )}
           </li>
         ))}
         {isEdit && <li className='bookmark-list-item'><button className="bookmark-link bookmark-list-add" onClick={handleBookmarkAdd}>add bookmark</button></li>}
