@@ -6,6 +6,7 @@ import { BookmarkList as BookmarkListType } from '../types'
 import ImageUpload from '../components/ImageUpload'
 import defaultBookmarkLists from '../bookmarkLists'
 import defaultBackground from '../background'
+import Settings from '../components/Settings'
 
 const bookmarkListsKey = 'bookmark-lists'
 const backgroundKey = 'background'
@@ -80,43 +81,16 @@ export default () => {
             ></BookmarkList>
           </li>
         ))}
-        <li className={`bookmark-lists-item settings-dropdown ${isEdit ? 'active' : ''}`}>
-          <div className='bookmark-lists-item-title'>settings</div>
-          <ul className='bookmark-list'>
-            {isEdit ? (
-              <>
-                <li className='bookmark-list-item'>
-                  <button className='bookmark-link' onClick={handleBookmarkListAdd}>
-                    add bookmark list
-                  </button>
-                </li>
-                <li className='bookmark-list-item'>
-                  <button className='bookmark-link' onClick={handleCancel}>
-                    cancel
-                  </button>
-                </li>
-                <li className='bookmark-list-item'>
-                  <button className='bookmark-link' onClick={handleSave}>
-                    save
-                  </button>
-                </li>
-                <li className='bookmark-list-item'>
-                  <ImageUpload
-                    label='Change wallpaper'
-                    className='bookmark-link'
-                    onChange={handleImageChange}
-                  ></ImageUpload>
-                </li>
-              </>
-            ) : (
-              <li className='bookmark-list-item'>
-                <button className='bookmark-link' onClick={handleEdit}>
-                  Edit
-                </button>
-              </li>
-            )}
-          </ul>
-        </li>
+        <Settings
+          {...{
+            isEdit,
+            handleBookmarkListAdd,
+            handleSave,
+            handleCancel,
+            handleEdit,
+            handleImageChange,
+          }}
+        />
       </ul>
     </div>
   )
