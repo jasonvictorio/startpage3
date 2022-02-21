@@ -5,43 +5,44 @@ import Bookmark from './Bookmark'
 import Input from './Input'
 
 type Props = BookmarkList & {
-  isEdit: boolean,
-  onBookmarkListChange: (bookmarkList: BookmarkList) => void,
-  onBookmarkListDelete: () => void,
+  isEdit: boolean
+  onBookmarkListChange: (bookmarkList: BookmarkList) => void
+  onBookmarkListDelete: () => void
 }
 
-export default ({ title, bookmarks, isEdit, onBookmarkListChange, onBookmarkListDelete }: Props) => {
+export default ({
+  title,
+  bookmarks,
+  isEdit,
+  onBookmarkListChange,
+  onBookmarkListDelete,
+}: Props) => {
   const handleBookmarkListTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onBookmarkListChange({ title: e.target.value, bookmarks })
   }
 
   const handleBookmarkChange = (i: number) => (bookmark: BookmarkType) => {
-
     onBookmarkListChange({
       title,
-      bookmarks: [
-        ...bookmarks.slice(0, i),
-        bookmark,
-        ...bookmarks.slice(i + 1)
-      ]
+      bookmarks: [...bookmarks.slice(0, i), bookmark, ...bookmarks.slice(i + 1)],
     })
   }
 
   const handleBookmarkAdd = () => {
     onBookmarkListChange({
       title,
-      bookmarks: [...bookmarks, { title: '', url: '' }]
+      bookmarks: [...bookmarks, { title: '', url: '' }],
     })
   }
 
   const handleBookmarkMove = (i: number, bookmark: BookmarkType, direction: 1 | -1) => () => {
-    if (i - direction < 0) return;
+    if (i - direction < 0) return
 
     bookmarks.splice(i, 1)
     bookmarks.splice(i - direction, 0, bookmark)
     onBookmarkListChange({
       title,
-      bookmarks: bookmarks
+      bookmarks: bookmarks,
     })
   }
 
@@ -54,15 +55,21 @@ export default ({ title, bookmarks, isEdit, onBookmarkListChange, onBookmarkList
     <>
       {isEdit ? (
         <div className='bookmark-lists-item-title'>
-          <button type="button" className='icon-font' onClick={onBookmarkListDelete}>delete</button>
-          <Input value={title} onChange={handleBookmarkListTitleChange} placeholder="List title"></Input>
+          <button type='button' className='icon-font' onClick={onBookmarkListDelete}>
+            delete
+          </button>
+          <Input
+            value={title}
+            onChange={handleBookmarkListTitleChange}
+            placeholder='List title'
+          ></Input>
         </div>
       ) : (
-        <div className="bookmark-lists-item-title">{title}</div>
+        <div className='bookmark-lists-item-title'>{title}</div>
       )}
       <ul className='bookmark-list'>
         {bookmarks.map((bookmark, i) => (
-          <li className="bookmark-list-item" key={i}>
+          <li className='bookmark-list-item' key={i}>
             {bookmark.title !== '' || isEdit ? (
               <Bookmark
                 title={bookmark.title}
@@ -74,11 +81,17 @@ export default ({ title, bookmarks, isEdit, onBookmarkListChange, onBookmarkList
                 onBookmarkDelete={handleBookmarkDelete(i)}
               ></Bookmark>
             ) : (
-              <div className="bookmark-list-divider"></div>
+              <div className='bookmark-list-divider'></div>
             )}
           </li>
         ))}
-        {isEdit && <li className='bookmark-list-item'><button className="bookmark-link bookmark-list-add" onClick={handleBookmarkAdd}>add bookmark</button></li>}
+        {isEdit && (
+          <li className='bookmark-list-item'>
+            <button className='bookmark-link bookmark-list-add' onClick={handleBookmarkAdd}>
+              add bookmark
+            </button>
+          </li>
+        )}
       </ul>
     </>
   )

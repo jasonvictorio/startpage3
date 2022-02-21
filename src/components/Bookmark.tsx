@@ -4,11 +4,11 @@ import { Bookmark } from '../types'
 import Input from './Input'
 
 type Props = Bookmark & {
-  isEdit: boolean,
-  onBookmarkChange: (bookmark: Bookmark) => void,
-  onBookmarkMoveUp: () => void,
-  onBookmarkMoveDown: () => void,
-  onBookmarkDelete: () => void,
+  isEdit: boolean
+  onBookmarkChange: (bookmark: Bookmark) => void
+  onBookmarkMoveUp: () => void
+  onBookmarkMoveDown: () => void
+  onBookmarkDelete: () => void
 }
 
 const placeholderTitle = 'title'
@@ -21,7 +21,7 @@ export default ({
   onBookmarkChange,
   onBookmarkMoveUp,
   onBookmarkMoveDown,
-  onBookmarkDelete
+  onBookmarkDelete,
 }: Props) => {
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onBookmarkChange({ title: e.target.value, url })
@@ -31,17 +31,23 @@ export default ({
     onBookmarkChange({ url: e.target.value, title })
   }
 
-  return (
-    isEdit ? (
-      <div className='bookmark-link'>
-        <button type="button" onClick={onBookmarkDelete}>delete</button>
-        <button type="button" onClick={onBookmarkMoveUp}>arrow_upward</button>
-        <button type="button" onClick={onBookmarkMoveDown}>arrow_downward</button>
-        <Input value={title} onChange={handleTitleChange} placeholder={placeholderTitle}></Input>
-        <Input value={url} onChange={handleUrlChange} placeholder={placeholderUrl}></Input>
-      </div>
-    ) : (
-      <a href={url} className="bookmark-link" title={url}>{title}</a>
-    )
+  return isEdit ? (
+    <div className='bookmark-link'>
+      <button type='button' onClick={onBookmarkDelete}>
+        delete
+      </button>
+      <button type='button' onClick={onBookmarkMoveUp}>
+        arrow_upward
+      </button>
+      <button type='button' onClick={onBookmarkMoveDown}>
+        arrow_downward
+      </button>
+      <Input value={title} onChange={handleTitleChange} placeholder={placeholderTitle}></Input>
+      <Input value={url} onChange={handleUrlChange} placeholder={placeholderUrl}></Input>
+    </div>
+  ) : (
+    <a href={url} className='bookmark-link' title={url}>
+      {title}
+    </a>
   )
 }

@@ -1,9 +1,9 @@
 export interface Bookmark {
-  title: string,
-  url: string,
+  title: string
+  url: string
 }
 
 export interface BookmarkList {
-  title: string,
-  bookmarks: Bookmark[],
+  title: string
+  bookmarks: Bookmark[]
 }

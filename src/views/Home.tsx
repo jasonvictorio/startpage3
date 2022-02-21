@@ -31,11 +31,7 @@ export default () => {
   }, [])
 
   const handleBookmarkListChange = (i: number) => (bookmarkList: BookmarkListType) => {
-    setBookmarkLists([
-      ...bookmarkLists.slice(0, i),
-      bookmarkList,
-      ...bookmarkLists.slice(i + 1),
-    ])
+    setBookmarkLists([...bookmarkLists.slice(0, i), bookmarkList, ...bookmarkLists.slice(i + 1)])
   }
 
   const handleBookmarkListDelete = (i: number) => () => {
@@ -46,7 +42,6 @@ export default () => {
     const newBookmarkList = { title: '', bookmarks: [{ title: '', url: '' }] }
     setBookmarkLists([...bookmarkLists, newBookmarkList])
   }
-
 
   const handleEdit = () => {
     setBookmarkListsCopy(_.cloneDeep(bookmarkLists))
@@ -72,10 +67,10 @@ export default () => {
   }
 
   return (
-    <div className="home" style={{ backgroundImage: `url(${background})` }}>
+    <div className='home' style={{ backgroundImage: `url(${background})` }}>
       <ul className='bookmark-lists'>
         {bookmarkLists.map(({ title, bookmarks }, i) => (
-          <li key={i} className="bookmark-lists-item">
+          <li key={i} className='bookmark-lists-item'>
             <BookmarkList
               title={title}
               bookmarks={bookmarks}
@@ -86,22 +81,28 @@ export default () => {
           </li>
         ))}
         <li className={`bookmark-lists-item settings-dropdown ${isEdit ? 'active' : ''}`}>
-          <div className="bookmark-lists-item-title">settings</div>
-          <ul className="bookmark-list">
+          <div className='bookmark-lists-item-title'>settings</div>
+          <ul className='bookmark-list'>
             {isEdit ? (
               <>
                 <li className='bookmark-list-item'>
-                  <button className='bookmark-link' onClick={handleBookmarkListAdd}>add bookmark list</button>
+                  <button className='bookmark-link' onClick={handleBookmarkListAdd}>
+                    add bookmark list
+                  </button>
                 </li>
                 <li className='bookmark-list-item'>
-                  <button className='bookmark-link' onClick={handleCancel}>cancel</button>
+                  <button className='bookmark-link' onClick={handleCancel}>
+                    cancel
+                  </button>
                 </li>
                 <li className='bookmark-list-item'>
-                  <button className='bookmark-link' onClick={handleSave}>save</button>
+                  <button className='bookmark-link' onClick={handleSave}>
+                    save
+                  </button>
                 </li>
                 <li className='bookmark-list-item'>
                   <ImageUpload
-                    label="Change wallpaper"
+                    label='Change wallpaper'
                     className='bookmark-link'
                     onChange={handleImageChange}
                   ></ImageUpload>
@@ -109,7 +110,9 @@ export default () => {
               </>
             ) : (
               <li className='bookmark-list-item'>
-                <button className='bookmark-link' onClick={handleEdit}>Edit</button>
+                <button className='bookmark-link' onClick={handleEdit}>
+                  Edit
+                </button>
               </li>
             )}
           </ul>

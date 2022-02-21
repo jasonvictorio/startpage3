@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect, ChangeEvent } from 'react'
 
 type Props = {
-  value: string,
-  placeholder: string,
-  className?: string,
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void,
+  value: string
+  placeholder: string
+  className?: string
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 export default ({ value, placeholder, className, onChange }: Props) => {
@@ -17,8 +17,17 @@ export default ({ value, placeholder, className, onChange }: Props) => {
 
   return (
     <div>
-      <span ref={span} className="hidden-span">{value || placeholder}</span>
-      <input type="text" className={className} style={{ width }} value={value} placeholder={placeholder} onChange={onChange} />
+      <span ref={span} className='hidden-span'>
+        {value || placeholder}
+      </span>
+      <input
+        type='text'
+        className={className}
+        style={{ width }}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+      />
     </div>
-  );
-};
+  )
+}
