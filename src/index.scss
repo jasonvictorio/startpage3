@@ -3,12 +3,14 @@
 @import 'tailwindcss/utilities';
 @import 'bootstrap/scss/bootstrap';
 
-.App {
-  height: 100vh;
-}
-
 @mixin transition {
   transition: all 250ms ease-in-out;
+}
+
+.home {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
 }
 
 .bookmark-lists {
@@ -40,6 +42,10 @@
         cursor: default;
         padding: 0 15px;
         margin: 0;
+      }
+
+      button {
+        margin-right: 4px;
       }
     }
   }
@@ -141,6 +147,8 @@ input {
   @include transition;
   opacity: 0;
 
+
+  &.active,
   &:hover {
     opacity: 100%;
   }
@@ -184,8 +192,24 @@ button {
 
 .input-file {
   cursor: pointer;
+  margin: 0;
 
   input {
     display: none;
+  }
+}
+
+.icon-font,
+.bookmark-link button {
+  font-family: "Material Icons";
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+
+  &:hover {
+    background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
   }
 }

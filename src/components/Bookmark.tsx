@@ -34,14 +34,14 @@ export default ({
   return (
     isEdit ? (
       <div className='bookmark-link'>
-        <button type="button" onClick={onBookmarkDelete}>❌</button>
-        <button type="button" onClick={onBookmarkMoveUp}>🔼</button>
-        <button type="button" onClick={onBookmarkMoveDown}>🔽</button>
+        <button type="button" onClick={onBookmarkDelete}>delete</button>
+        <button type="button" onClick={onBookmarkMoveUp}>arrow_upward</button>
+        <button type="button" onClick={onBookmarkMoveDown}>arrow_downward</button>
         <Input value={title} onChange={handleTitleChange} placeholder={placeholderTitle}></Input>
         <Input value={url} onChange={handleUrlChange} placeholder={placeholderUrl}></Input>
       </div>
     ) : (
-      <a href={url} className="bookmark-link" title={url}>{title} <span className="bookmark-link-url">{url}</span></a>
+      <a href={url} className="bookmark-link" title={url}>{title}</a>
     )
   )
 }

@@ -7,9 +7,10 @@ import Input from './Input'
 type Props = BookmarkList & {
   isEdit: boolean,
   onBookmarkListChange: (bookmarkList: BookmarkList) => void,
+  onBookmarkListDelete: () => void,
 }
 
-export default ({ title, bookmarks, isEdit, onBookmarkListChange }: Props) => {
+export default ({ title, bookmarks, isEdit, onBookmarkListChange, onBookmarkListDelete }: Props) => {
   const handleBookmarkListTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onBookmarkListChange({ title: e.target.value, bookmarks })
   }
@@ -52,8 +53,10 @@ export default ({ title, bookmarks, isEdit, onBookmarkListChange }: Props) => {
   return (
     <>
       {isEdit ? (
-        <Input value={title} onChange={handleBookmarkListTitleChange} placeholder="List title" className="bookmark-lists-item-title"></Input>
-        // <input className="bookmark-lists-item-title" type="text" value={title} onChange={handleBookmarkListTitleChange} />
+        <div className='bookmark-lists-item-title'>
+          <button type="button" className='icon-font' onClick={onBookmarkListDelete}>delete</button>
+          <Input value={title} onChange={handleBookmarkListTitleChange} placeholder="List title"></Input>
+        </div>
       ) : (
         <div className="bookmark-lists-item-title">{title}</div>
       )}
