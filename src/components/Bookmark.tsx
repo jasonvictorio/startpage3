@@ -31,23 +31,27 @@ export default ({
     onBookmarkChange({ url: e.target.value, title })
   }
 
-  return isEdit ? (
-    <div className='bookmark-link'>
-      <button type='button' onClick={onBookmarkDelete}>
-        delete
-      </button>
-      <button type='button' onClick={onBookmarkMoveUp}>
-        arrow_upward
-      </button>
-      <button type='button' onClick={onBookmarkMoveDown}>
-        arrow_downward
-      </button>
-      <Input value={title} onChange={handleTitleChange} placeholder={placeholderTitle}></Input>
-      <Input value={url} onChange={handleUrlChange} placeholder={placeholderUrl}></Input>
-    </div>
-  ) : (
-    <a href={url} className='bookmark-link' title={url}>
-      {title}
-    </a>
+  return (
+    <li className='bookmark-list-item'>
+      {isEdit ? (
+        <div className='bookmark-link'>
+          <button type='button' onClick={onBookmarkDelete}>
+            delete
+          </button>
+          <button type='button' onClick={onBookmarkMoveUp}>
+            arrow_upward
+          </button>
+          <button type='button' onClick={onBookmarkMoveDown}>
+            arrow_downward
+          </button>
+          <Input value={title} onChange={handleTitleChange} placeholder={placeholderTitle}></Input>
+          <Input value={url} onChange={handleUrlChange} placeholder={placeholderUrl}></Input>
+        </div>
+      ) : (
+        <a href={url} className='bookmark-link' title={url}>
+          {title}
+        </a>
+      )}
+    </li>
   )
 }

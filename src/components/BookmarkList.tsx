@@ -17,21 +17,10 @@ export default ({
   onBookmarkListChange,
   onBookmarkListDelete,
 }: Props) => {
-  const handleBookmarkListTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onBookmarkListChange({ title: e.target.value, bookmarks })
-  }
-
   const handleBookmarkChange = (i: number) => (bookmark: BookmarkType) => {
     onBookmarkListChange({
       title,
       bookmarks: [...bookmarks.slice(0, i), bookmark, ...bookmarks.slice(i + 1)],
-    })
-  }
-
-  const handleBookmarkAdd = () => {
-    onBookmarkListChange({
-      title,
-      bookmarks: [...bookmarks, { title: '', url: '' }],
     })
   }
 
@@ -51,8 +40,29 @@ export default ({
     onBookmarkListChange({ title, bookmarks })
   }
 
+  const handleBookmarkListTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onBookmarkListChange({ title: e.target.value, bookmarks })
+  }
+
+  const BookmarkAdd = () => {
+    const handleBookmarkAdd = () => {
+      onBookmarkListChange({
+        title,
+        bookmarks: [...bookmarks, { title: '', url: '' }],
+      })
+    }
+
+    return isEdit ? (
+      <li className='bookmark-list-item'>
+        <button className='bookmark-link bookmark-list-add' onClick={handleBookmarkAdd}>
+          add bookmark
+        </button>
+      </li>
+    ) : null
+  }
+
   return (
-    <>
+    <li className='bookmark-lists-item'>
       {isEdit ? (
         <div className='bookmark-lists-item-title'>
           <button type='button' className='icon-font' onClick={onBookmarkListDelete}>
@@ -68,31 +78,24 @@ export default ({
         <div className='bookmark-lists-item-title'>{title}</div>
       )}
       <ul className='bookmark-list'>
-        {bookmarks.map((bookmark, i) => (
-          <li className='bookmark-list-item' key={i}>
-            {bookmark.title !== '' || isEdit ? (
-              <Bookmark
-                title={bookmark.title}
-                url={bookmark.url}
-                isEdit={isEdit}
-                onBookmarkChange={handleBookmarkChange(i)}
-                onBookmarkMoveUp={handleBookmarkMove(i, bookmark, 1)}
-                onBookmarkMoveDown={handleBookmarkMove(i, bookmark, -1)}
-                onBookmarkDelete={handleBookmarkDelete(i)}
-              ></Bookmark>
-            ) : (
-              <div className='bookmark-list-divider'></div>
-            )}
-          </li>
-        ))}
-        {isEdit && (
-          <li className='bookmark-list-item'>
-            <button className='bookmark-link bookmark-list-add' onClick={handleBookmarkAdd}>
-              add bookmark
-            </button>
-          </li>
+        {bookmarks.map((bookmark, i) =>
+          bookmark.title !== '' || isEdit ? (
+            <Bookmark
+              title={bookmark.title}
+              url={bookmark.url}
+              isEdit={isEdit}
+              key={i}
+              onBookmarkChange={handleBookmarkChange(i)}
+              onBookmarkMoveUp={handleBookmarkMove(i, bookmark, 1)}
+              onBookmarkMoveDown={handleBookmarkMove(i, bookmark, -1)}
+              onBookmarkDelete={handleBookmarkDelete(i)}
+            ></Bookmark>
+          ) : (
+            <div className='bookmark-list-divider' key={i}></div>
+          )
         )}
+        <BookmarkAdd />
       </ul>
-    </>
+    </li>
   )
 }

@@ -68,18 +68,17 @@ export default () => {
   }
 
   return (
-    <div className='home' style={{ backgroundImage: `url(${background})` }}>
+    <nav className='home' style={{ backgroundImage: `url(${background})` }}>
       <ul className='bookmark-lists'>
         {bookmarkLists.map(({ title, bookmarks }, i) => (
-          <li key={i} className='bookmark-lists-item'>
-            <BookmarkList
-              title={title}
-              bookmarks={bookmarks}
-              isEdit={isEdit}
-              onBookmarkListChange={handleBookmarkListChange(i)}
-              onBookmarkListDelete={handleBookmarkListDelete(i)}
-            ></BookmarkList>
-          </li>
+          <BookmarkList
+            title={title}
+            bookmarks={bookmarks}
+            isEdit={isEdit}
+            key={i}
+            onBookmarkListChange={handleBookmarkListChange(i)}
+            onBookmarkListDelete={handleBookmarkListDelete(i)}
+          />
         ))}
         <Settings
           {...{
@@ -92,6 +91,6 @@ export default () => {
           }}
         />
       </ul>
-    </div>
+    </nav>
   )
 }
