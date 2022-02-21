@@ -3,7 +3,6 @@ import _ from 'lodash'
 
 import BookmarkList from '../components/BookmarkList'
 import { BookmarkList as BookmarkListType } from '../types'
-import ImageUpload from '../components/ImageUpload'
 import defaultBookmarkLists from '../bookmarkLists'
 import defaultBackground from '../background'
 import Settings from '../components/Settings'
