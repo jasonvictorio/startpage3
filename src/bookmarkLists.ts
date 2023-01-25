@@ -16,18 +16,20 @@ const bookmarkLists: BookmarkList[] = [
     title: 'second',
     bookmarks: [
       { title: 'Youtube', url: 'https://www.youtube.com' },
-      { title: 'Sound Cloud', url: 'https://soundcloud.com/stream' },
       { title: 'Spotify', url: 'https://open.spotify.com/collection' },
+      { title: 'Netflix', url: 'https://www.netflix.com/browse' },
     ],
   },
   {
     title: 'third',
     bookmarks: [
       { title: 'Hacker News', url: 'https://news.ycombinator.com' },
-      { title: 'The Radavist', url: 'http://theradavist.com' },
-      { title: 'Apartment Theraphy', url: 'http://www.apartmenttherapy.com' },
-      { title: 'The Setup', url: 'https://usesthis.com' },
-      { title: 'KTT', url: 'http://www.kanyetothe.com/forum/' },
+      { title: 'Anna\'s Archive', url: 'https://annas-archive.org/' },
+      { title: 'WebDesignClip', url: 'https://webdesignclip.com/' },
+      { title: 'S5 Style', url: 'https://bm.s5-style.com/' },
+      { title: 'MUUUUU', url: 'https://muuuuu.org/' },
+      { title: 'Siiimple', url: 'https://siiimple.com/' },
+      { title: 'Behance', url: 'https://www.behance.net/' },
     ],
   },
   {
@@ -35,9 +37,6 @@ const bookmarkLists: BookmarkList[] = [
     bookmarks: [
       { title: 'Figma', url: 'https://www.figma.com/files/recent' },
       { title: 'Unsplash', url: 'https://unsplash.com/' },
-      { title: 'Straightline', url: 'http://bm.straightline.jp' },
-      { title: 'Siiimple', url: 'https://siiimple.com/' },
-      { title: 'Behance', url: 'https://www.behance.net/' },
       { title: 'Google Fonts', url: 'https://fonts.google.com/' },
       { title: 'Lorem ipsum', url: 'https://loremipsum.io/' },
     ],
