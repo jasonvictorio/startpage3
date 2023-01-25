@@ -49,7 +49,7 @@ export default ({
         </div>
       ) : (
         <a href={url} className='bookmark-link' title={url}>
-          {title}
+          {title ? title : url}
         </a>
       )}
     </li>

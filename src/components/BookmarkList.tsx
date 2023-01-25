@@ -79,7 +79,9 @@ export default ({
       )}
       <ul className='bookmark-list'>
         {bookmarks.map((bookmark, i) =>
-          bookmark.title !== '' || isEdit ? (
+          (!isEdit && bookmark.url === '' && bookmark.title === '') ? (
+            <div className='bookmark-list-divider' key={i}></div>
+          ) : (
             <Bookmark
               title={bookmark.title}
               url={bookmark.url}
@@ -90,8 +92,6 @@ export default ({
               onBookmarkMoveDown={handleBookmarkMove(i, bookmark, -1)}
               onBookmarkDelete={handleBookmarkDelete(i)}
             ></Bookmark>
-          ) : (
-            <div className='bookmark-list-divider' key={i}></div>
           )
         )}
         <BookmarkAdd />
